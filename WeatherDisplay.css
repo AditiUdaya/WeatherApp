@@ -1,0 +1,63 @@
+.weather-container {
+    position: absolute;
+    top: 3.5rem; /* Align below the navbar */
+    right: 0;
+    width: 450px; /* Adjust width as needed */
+    height: calc(100vh - 3.5rem);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* Allows clicking through the container onto the globe */
+}
+
+.weather-card {
+    pointer-events: auto; /* Re-enables pointer events for the card itself */
+    /* The Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.weather-card h2 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.weather-temp {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0 0 0 10px;
+}
+
+.weather-description {
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.weather-details {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+}

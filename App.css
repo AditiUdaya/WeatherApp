@@ -1,0 +1,68 @@
+
+body {
+  padding-top: 3.5rem; /*content is pushed down by this much*/
+  background-color: black;
+  margin:0;
+}
+
+.globe {
+    margin-left: 0px; 
+  
+  /* This value is now larger, creating more space on the right */
+  margin-right: 500px;
+  
+  /* The width is updated to account for the new margins */
+  width: calc(100% - 0px - 500px); 
+  
+  height: calc(100vh - 3.5rem);
+  background-color: black;
+    
+}
+
+.overlayTools {
+    position: absolute;
+    top: 3.5rem;
+    max-height: calc(100vh - 3.5rem);
+    background-color: black;
+}
+
+.overlayCards {
+    position: absolute;
+    top: 3.5rem;
+    left: 100px;
+    max-height: calc(100vh - 3.5rem);
+    background: rgba(0, 0, 0, 0.5);
+    color: white !important;                         /* white text */
+    font-size: 0.85rem !important;                  /* smaller font */
+    padding: 0.1rem 0.25rem !important; 
+}
+
+.card {
+    background:rgba(37, 37, 37, 0.7) !important;
+}
+
+.card-body {
+    overflow-y: scroll;
+    max-height: calc(100vh - 8rem);
+    background-color: black;
+}
+
+.navbar {
+    height: 3rem;          /* height of the navbar */
+    padding-top: 0.25rem;   
+    padding-bottom: 0.25rem;
+    font-size: 1rem;   
+    border-bottom: none; /* remove any bottom border */
+    box-shadow: none;    /* remove shadow if present */    
+}
+
+/* This rule targets the unique class of the marker button */
+.Tools_button__3GjWS {
+  display: none !important;
+}
+
+/* This rule targets the unique class of the dropdown arrow button */
+.Tools_toggle___sQ5X {
+  display: none !important;
+}
+
