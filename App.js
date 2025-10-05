@@ -15,7 +15,7 @@ import './App.css'
 import WeatherDisplay from './WeatherDisplay';
 
 // IMPORTANT: Replace with your actual API key from OpenWeatherMap
-const API_KEY = 'ace9611c396b023e8cb03da11c625adc';
+const API_KEY = 'xxxxxx';
 
 export default class App extends Component {
 
@@ -140,4 +140,5 @@ export default class App extends Component {
       </div>
     )
   }
+
 }
