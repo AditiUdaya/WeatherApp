@@ -1,15 +1,15 @@
-# 🌦️SOFTWARE ENGINEERING COURSE PROJECT: Web-Based Weather Detection & Analysis Platform
+# SOFTWARE ENGINEERING COURSE PROJECT: Web-Based Weather Detection & Analysis Platform
 
 An advanced, AI-powered platform for real-time weather visualization, scientific analysis, and predictive forecasting.  
 Built with modern web technologies, 3D visualization, and machine learning to deliver accurate insights on global weather trends.
 
 ---
 
-## 🧭 Overview
+## Overview
 
 WeatherApp combines live weather data, NOAA scientific reanalysis models, and AI-driven forecasts into a single, interactive experience.
 
-### 🌍 Core Modules
+### Core Modules
 
 #### 1. **Main Page — 3D Interactive Globe**
 - immersive 3D globe visualization.
