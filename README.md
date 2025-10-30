@@ -1,32 +1,18 @@
-# SOFTWARE ENGINEERING COURSE PROJECT: Web-Based Weather Detection & Analysis Platform
+# React + Vite
 
-An advanced, AI-powered platform for real-time weather visualization, scientific analysis, and predictive forecasting.  
-Built with modern web technologies, 3D visualization, and machine learning to deliver accurate insights on global weather trends.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-WeatherApp combines live weather data, NOAA scientific reanalysis models, and AI-driven forecasts into a single, interactive experience.
+## React Compiler
 
-### Core Modules
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-#### 1. **Main Page — 3D Interactive Globe**
-- immersive 3D globe visualization.
-- Select any location by:
-  - Clicking on a **pin** on the globe, or  
-  - Searching via a **Mapbox-powered search bar**.
-- Displays **live weather metrics** (temperature, humidity, wind speed, etc.) and **short-term forecasts**.
+Note: This will impact Vite dev & build performances.
 
-#### 2. **Scientific & Analysis Page**
-- Renders **wind maps, heatmaps, and pressure visualizations** similar to *Earth Nullschool*.
-- Uses **NOAA GFS (Global Forecast System)** datasets.
-- Implemented with **GPU-based particle shaders** and **Three.js** for real-time simulation.
+## Expanding the ESLint configuration
 
-#### 3. **Trend Analysis & Predictions**
-- Interactive **trend analysis** using decades of historical weather data.
-- Visualized using **Plotly.js** with dynamic time-series graphs.
-- **LSTM model (PyTorch)** predicts 1–7 day forecasts for any region.
-- Model served through a **FastAPI microservice**.
-
----
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
