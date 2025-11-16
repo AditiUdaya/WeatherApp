@@ -1,11 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
 import Globe from "worldwind-react-globe";
 import WorldWind from "@nasaworldwind/worldwind";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import WeatherDisplay from "./WeatherDisplay";
 import AnalysisPage from "./pages/analysis/AnalysisPage";
+import SearchBar from "./components/SearchBar";
+import "./components/SearchBar.css";
 
 
 const API_KEY = "c47e0385fe37b28b0332290341191045";
@@ -118,7 +120,7 @@ class App extends Component {
     this.fetchWeatherData(lat, lon);
   };
 
-  updateMarker(lat, lon) {
+  updateMarker(lat, lon, customLabel = null) {
     const wwd = this.state.wwd;
     if (!wwd || !this.markerLayer) return;
 
@@ -133,9 +135,12 @@ class App extends Component {
       attrs
     );
 
-    marker.label = `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+    marker.label = customLabel || `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
     this.markerLayer.addRenderable(marker);
     wwd.redraw();
+    
+    // Save coordinates to localStorage for the analysis page
+    localStorage.setItem("coords", JSON.stringify({ lat, lon }));
   }
 
   async fetchWeatherData(lat, lon) {
@@ -207,6 +212,48 @@ class App extends Component {
     }
   };
 
+  async geoLookup(placeName) {
+    const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY || 'c47e0385fe37b28b0332290341191045';
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(placeName)}&limit=1&appid=${apiKey}`
+      );
+      const data = await res.json();
+      if (!data || data.length === 0) {
+        throw new Error('Location not found');
+      }
+      return { lat: data[0].lat, lon: data[0].lon, name: data[0].name };
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      throw error;
+    }
+  }
+
+  goToLocation = async (lat, lon, displayName = null) => {
+    const wwd = this.state.wwd;
+    if (!wwd) return;
+
+    // Animate to the location
+    wwd.goTo(new WorldWind.Location(lat, lon));
+    
+    // Update marker with location name if available
+    this.updateMarker(lat, lon, displayName || `${lat.toFixed(2)}, ${lon.toFixed(2)}`);
+    
+    // Fetch weather data for the new location
+    this.fetchWeatherData(lat, lon);
+  };
+
+  handleSearch = async (query) => {
+    try {
+      const { lat, lon, name } = await this.geoLookup(query);
+      this.goToLocation(lat, lon, name);
+      return { success: true };
+    } catch (error) {
+      console.error('Search error:', error);
+      throw error;
+    }
+  };
+
   renderGlobe() {
     const layers = [
       { layer: "blue-marble", options: { enabled: true, category: "base" } },
@@ -217,6 +264,8 @@ class App extends Component {
     return (
       <div className="globe-permanent">
         <Globe ref={this.globeRef} layers={layers} />
+        
+        <SearchBar onSearch={this.handleSearch} className="search-bar-container" />
 
         <WeatherDisplay
           weatherData={this.state.weatherData}

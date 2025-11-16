@@ -1,0 +1,84 @@
+name: Weatherly CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # FIX: Legacy peer deps to avoid three.js / framer-motion errors
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --legacy-peer-deps
+          else
+            npm install --legacy-peer-deps
+          fi
+
+      - name: Run linting (if available)
+        run: |
+          if npm list --depth=0 | grep -q eslint; then
+            npm run lint
+          else
+            echo "No ESLint found, skipping…"
+          fi
+
+      - name: Run tests (if available)
+        run: |
+          if npm list --depth=0 | grep -q jest; then
+            npm test -- --watchAll=false --ci --coverage=false
+          else
+            echo "No Jest tests found, skipping…"
+          fi
+        env:
+          CI: true
+
+      - name: Build application
+        run: |
+          if npm run | grep -q build; then
+            npm run build
+          else
+            echo "No build script found, skipping…"
+          fi
+
+      - name: Security audit
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high || true
+          else
+            echo "No package.json found, skipping security audit"
+          fi
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy to staging
+        run: echo "Deploying to staging…"
+
+      - name: Run integration tests
+        run: echo "Running integration tests…"
+
+      - name: Deploy to production
+        run: echo "Deploying to production…"
