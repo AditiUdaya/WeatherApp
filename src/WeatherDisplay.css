@@ -1,0 +1,117 @@
+/* Always bottom-right */
+.weather-card {
+  pointer-events: auto;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(18px);
+  padding: 16px 20px;
+  border-radius: 16px;
+  color: white;
+  width: 180px;        /* compact width */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: fadeIn 0.25s ease;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.55);
+  text-align: center;
+}
+
+
+
+/* Main card */
+.weather-card {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(18px);
+  padding: 22px 26px;
+  border-radius: 18px;
+  color: #fff;
+  width: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55),
+              inset 0 0 12px rgba(255, 255, 255, 0.03);
+
+  animation: fadeIn 0.3s ease-out;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.weather-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.7);
+}
+
+/* Title */
+.weather-location {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Icon circle */
+.weather-icon {
+  width: 58px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.1);
+}
+
+.weather-emoji {
+  font-size: 28px;
+}
+
+/* Temperature */
+.weather-temp {
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Description */
+.weather-description {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+/* Details row */
+.weather-details {
+  font-size: 0.92rem;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  opacity: 0.95;
+}
+
+/* Loading state */
+.weather-card.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  width: 160px;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}

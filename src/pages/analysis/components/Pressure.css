@@ -1,0 +1,111 @@
+/* ROOT FULLSCREEN WRAPPER */
+.relative.w-full.h-screen.bg-slate-900.overflow-hidden {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Pressure Map Canvas / Image / SVG wrapper */
+.relative.w-full.h-screen.bg-slate-900.overflow-hidden img,
+.relative.w-full.h-screen.bg-slate-900.overflow-hidden canvas,
+.relative.w-full.h-screen.bg-slate-900.overflow-hidden .pressure-map {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pressure visuals usually need cover */
+    display: block;
+}
+
+/* LEFT SIDEBAR (same style as DewPoint) */
+.absolute.left-0.top-0.bottom-0.w-80 {
+    position: absolute;
+    top: 80px; /* below your navbar */
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    background: rgba(15, 20, 35, 0.88);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px;
+    overflow-y: auto;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.3);
+}
+
+/* HEADER gradient bar */
+.absolute.top-0.left-0.right-0.z-20 {
+    background: linear-gradient(
+        to bottom,
+        rgba(10,15,30,0.9),
+        transparent
+    );
+    padding-bottom: 10px;
+}
+
+/* INFO PANEL (matches DewPoint styling exactly) */
+.absolute.top-20.right-4.z-30 {
+    background: rgba(15, 20, 35, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* SIDEBAR SCROLLBAR */
+.absolute.left-0.top-0.bottom-0.w-80::-webkit-scrollbar {
+    width: 6px;
+}
+.absolute.left-0.top-0.bottom-0.w-80::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+}
+.absolute.left-0.top-0.bottom-0.w-80::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+/* CENTER PRESSURE VALUE DISPLAY (if used) */
+.absolute.inset-0.flex.items-center.justify-center.pointer-events-none {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LEGEND — bottom right */
+.absolute.bottom-6.right-6 {
+    background: rgba(15,20,35,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    color: #cbd5e1;
+}
+
+/* RESPONSIVE — matches DewPoint behavior */
+@media (max-width: 768px) {
+    .absolute.left-0.top-0.bottom-0.w-80 {
+        width: calc(100vw - 40px);
+        left: 20px;
+        right: 20px;
+        top: auto;
+        bottom: 20px;
+        height: auto;
+        border-right: none;
+        border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .absolute.top-20.right-4.z-30 {
+        right: 10px;
+        width: calc(100vw - 40px);
+    }
+}
